@@ -1,0 +1,1 @@
+web: gunicorn BLOGGING_WEBSITE-DJANGO-MAIN.wsgi

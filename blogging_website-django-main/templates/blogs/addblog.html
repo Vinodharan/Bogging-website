@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<br>
+<h4 class="text-center">Write Your Blog</h4>
+<br>
+
+<div class="container">
+    {% include 'messages.html' %}
+</div>
+
+<div class="container">
+    <form method="post" action="{% url 'addblog' %}">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label class="form-label">Title</label>
+            <input name="title" type="text" class="form-control" id="exampleInputPassword1" required>
+        </div>
+        <div class="form-group">
+            <label for="exampleFormControlTextarea1">Body</label>
+            <textarea name="body" class="form-control" id="exampleFormControlTextarea1" rows="6" required></textarea>
+        </div>
+        <br>
+        <button type="submit" class="btn btn-outline-primary">post</button>
+    </form>
+</div>
+
+{% endblock %}

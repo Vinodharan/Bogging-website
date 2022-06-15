@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<br>
+<h3>Search reslults : {{ count }}</h3>
+
+<div class="container">
+    {% for post in posts %}
+    <div class="row">
+        <div class="col">
+            <div class="card" style="width: 100%; margin: 5px;">
+                <div class="card-body">
+                    <h5 class="card-title">{{ post.title }}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">@{{post.author.username}}</h6>
+                    <p class="card-text">{{ post.body | safe | truncatewords:30 }}</p>
+                    <a class="btn btn-outline-primary btn-sm" href="{% url 'post_details' post.id %}" role="button">view</a>
+                    {% if post.author == user %}
+                    <a href="{% url 'updateBlog' post.id %}" class="btn btn-outline-secondary btn-sm">Edit</a>
+                    <a href="{% url 'deleteBlog' post.id %}" class="btn btn-outline-danger btn-sm">Delete</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}

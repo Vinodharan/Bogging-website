@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<br>
+
+<div class="container">
+    {% include 'messages.html' %}
+</div>
+
+<div class="container">
+    <div class="card border-secondary">
+        <div class="card-header">
+            @{{ post.author.username }}
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">{{ post.title | title}}</h5>
+            <p class="card-text">{{ post.body | safe }}</p>
+            {% if post.author == user %}
+            <a href="{% url 'updateBlog' post.id %}" class="btn btn-outline-secondary btn-sm">Edit</a>
+            <a href="{% url 'deleteBlog' post.id %}" class="btn btn-outline-danger btn-sm">Delete</a>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}
